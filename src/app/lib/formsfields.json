@@ -1,0 +1,84 @@
+{
+  "clientform": [
+    {
+      "label": "Api Key",
+      "field": "api_key",
+      "type": "text",
+      "required": true,
+      "class": "d-inline"
+    },
+    {
+      "label": "Client Code",
+      "field": "client_code",
+      "type": "text",
+      "required": true,
+      "class": "d-inline"
+    },
+    {
+      "label": "Pin",
+      "field": "password",
+      "type": "password",
+      "required": true,
+      "class": "d-inline"
+    },
+    {
+      "label": "TOTP",
+      "field": "totp",
+      "type": "text",
+      "required": true,
+      "class": "d-inline"
+    }
+  ],
+
+  "buysellfrom": [
+    {
+      "label": "Radio",
+      "field": "buysell",
+      "type": "radio",
+      "required": true,
+      "class": "d-inline col-md-4",
+      "options": [
+        { "label": "Buy", "value": "buy" },
+        { "label": "Sell", "value": "sell" }
+      ]
+    },
+    {
+      "label": "Radio",
+      "field": "regularboco",
+      "type": "radio",
+      "required": true,
+      "class": "d-inline col-md-4",
+      "options": [
+        { "label": "Regular", "value": "regular" },
+        { "label": "BO", "value": "bo" },
+        { "label": "CO", "value": "co" }
+      ]
+    },
+    {
+      "label": "Radio",
+      "field": "intradaydeliverynormal",
+      "type": "radio",
+      "required": true,
+      "class": "d-inline col-md-4",
+      "options": [
+        { "label": "Normal", "value": "normal" },
+        { "label": "Intraday", "value": "intraday" },
+        { "label": "Delivery", "value": "delivery" }
+      ]
+    },
+    {
+      "label": "Qty",
+      "field": "qty",
+      "type": "number-input",
+      "required": true,
+      "class": "d-inline col-md-2"
+    },
+    {
+      "label": "Price",
+      "field": "price",
+      "type": "number-input",
+      "required": true,
+      "class": "d-inline col-md-2"
+    }
+  ]
+}
