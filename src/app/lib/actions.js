@@ -4,7 +4,20 @@ import connectToDatabase from "../mongo/db";
 import Instrument from "../mongo/model/Instrument";
 import Client from "../mongo/model/Clients";
 import { decodeWithKey, encodeWithKey } from "./utils";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 // import { fetchInstrument } from "./data";
+
+export async function getClients(formData) {
+  try {
+    await connectToDatabase();
+    const data = await Client.find();
+    return JSON.parse(JSON.stringify(data || []));
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch  data.", error?.message);
+  }
+}
 
 export async function addClient(formData) {
   try {
@@ -23,6 +36,9 @@ export async function addClient(formData) {
       data: data,
     };
     console.log(data, "😋👑👑🌈");
+
+    revalidatePath("/securepage/clients");
+    // redirect("/securepage/clients");
     return JSON.parse(JSON.stringify(result || {}));
   } catch (error) {
     console.error("Database Error:", error);

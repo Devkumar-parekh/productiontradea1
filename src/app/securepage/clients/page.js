@@ -1,9 +1,14 @@
 import React from "react";
 import Forms from "../../components/Forms";
 import jsonObj from "../../lib/formsfields.json";
-import { addClient } from "../../lib/actions";
+import { addClient, getClients } from "../../lib/actions";
+import { decodeWithKey } from "../../lib/utils";
+import { CustomDatatable } from "customdatatabledev";
+import Clients from "./clients";
 
-function Page() {
+async function Page() {
+  const clients = await getClients();
+
   return (
     <div>
       <Forms
@@ -11,6 +16,8 @@ function Page() {
         formfields={jsonObj["clientform"]}
         btn={"Submit"}
       />
+      <Clients data={clients} />
+      {/* <CustomDatatable {...tableProps} /> */}
     </div>
   );
 }
