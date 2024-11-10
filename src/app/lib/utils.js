@@ -93,7 +93,7 @@ export function decodeDate(encodedDate) {
 
 // ENCODER_KEY;
 function xorEncryptDecrypt(input) {
-  const key = process.env.ENCODER_KEY || "devtestsecret";
+  const key = process.env.ENCODER_KEY || "dpmarketsec";
   let output = "";
   for (let i = 0; i < input.length; i++) {
     output += String.fromCharCode(
