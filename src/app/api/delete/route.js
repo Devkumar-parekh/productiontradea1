@@ -1,5 +1,6 @@
 import Client from "../../mongo/model/Clients";
-import WatchList from "../mongo/model/WatchList";
+// import WatchList from "../mongo/model/WatchList";
+import WatchList from "../../mongo/model/WatchList";
 import connectToDatabase from "../../mongo/db";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
