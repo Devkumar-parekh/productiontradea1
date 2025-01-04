@@ -6,7 +6,6 @@ import Watchlist from "./watchlist";
 
 async function Page() {
   const watchListData = await getWatchList();
-
   return (
     <div>
       {/* <Forms

@@ -15,7 +15,7 @@ function Watchlist(props) {
   const [watchlistdata, setWatchlistdata] = useState(props.data);
   const [orderstatus, setOrderstatus] = useState([]);
   const [modal, setmodal] = useState(1);
-
+  console.log(props.data, "😉🤐🤐");
   const router = useRouter();
   const TableHead = [
     {
