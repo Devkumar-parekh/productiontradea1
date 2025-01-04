@@ -112,7 +112,7 @@ export function encodeWithKey(data) {
 
 export function decodeWithKey(encodedData) {
   // Decode from base-64
-  const encryptedData = atob(encodedData);
+  const encryptedData = atob(encodedData || "");
   // Decrypt the data with the key
   return xorEncryptDecrypt(encryptedData);
 }

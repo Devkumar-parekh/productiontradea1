@@ -26,20 +26,14 @@ export const POST = async (req, res) => {
       mypublicip: payload.myip,
     };
     console.log(temppayload, "👑😘🤴");
-    const smart_api = new SmartAPI(temppayload);
-    res = await smart_api.generateSession(
-      temppayload.client_code,
-      temppayload.password,
-      temppayload.totp
-    );
-    let profile = {};
-    let orderBook = {};
-    let tradeBook = {};
-    let holding = {};
-    let placeOrderStatus = {};
-    let ltpData = {};
+    // const smart_api = new SmartAPI(temppayload);
+    let smart_api = new SmartAPI({
+      api_key: payload.api_key, // PROVIDE YOUR API KEY HERE
+      access_token: payload.jwt,
+    });
+    res = await smart_api.getOrderBook();
     if (res) {
-      profile = await smart_api.getProfile();
+      console.log("👨‍🏫", res);
 
       // User Methods
       // return smart_api.getProfile()

@@ -3,16 +3,14 @@ import Forms from "./Forms";
 import jsonObj from "../lib/formsfields.json";
 import { addClient } from "../lib/actions";
 
-function BuySellForm() {
+function BuySellForm(props) {
   return (
     <div>
       <Forms
-        // handleAction={addClient}
-        handleAction={() => {
-          console.log("handleAction called");
-        }}
+        handleForm={props.handleForm}
         formfields={jsonObj["buysellfrom"]}
         btn={"Buy/Sell"}
+        dropdowndata={props.dropdowndata}
       />
     </div>
   );

@@ -12,6 +12,7 @@ function RadioInput(props) {
               name={props.name}
               value={option?.value}
               className={`mx-1`}
+              onChange={props.onChange}
             />
             <label htmlFor={option?.value}>{option?.label}</label>
           </div>

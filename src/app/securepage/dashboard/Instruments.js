@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import InputText from "../../components/InputText";
 import CustomModal from "../../components/CustomModal";
 import BuySellForm from "../../components/BuySellForm";
-import { getInstrument } from "../../lib/actions";
+import { addWatchList, getInstrument } from "../../lib/actions";
 import { CustomDatatable } from "customdatatabledev";
 function Instruments() {
   const [formdata, setFormdata] = useState({
@@ -29,7 +29,16 @@ function Instruments() {
         return (
           <>
             <div className="text-center" style={{ maxWidth: "300px" }}>
-              <CustomModal
+              <button
+                className="btn btn-primary p-1 btn-sm"
+                onClick={async () => {
+                  console.log(row, "✨👑");
+                  await addWatchList(row);
+                }}
+              >
+                Add To WatchList
+              </button>
+              {/* <CustomModal
                 btnText="Buy"
                 headerTitle={`Buy ${row?.symbol}`}
                 modalBody={
@@ -37,12 +46,34 @@ function Instruments() {
                     <BuySellForm />
                   </span>
                 }
-              />
+              /> */}
             </div>
           </>
         );
       },
     },
+    // {
+    //   prop: "customCell",
+    //   title: "Action",
+    //   cell: (row) => {
+    //     const tempd = new Date();
+    //     return (
+    //       <>
+    //         <div className="text-center" style={{ maxWidth: "300px" }}>
+    //           <CustomModal
+    //             btnText="Buy"
+    //             headerTitle={`Buy ${row?.symbol}`}
+    //             modalBody={
+    //               <span id={tempd}>
+    //                 <BuySellForm />
+    //               </span>
+    //             }
+    //           />
+    //         </div>
+    //       </>
+    //     );
+    //   },
+    // },
     { prop: "name", title: "Name" },
     { prop: "lotsize", title: "Lot Size" },
     { prop: "strike", title: "Strike" },

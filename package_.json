@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -23,6 +23,8 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^3.1.0",
     "smartapi-javascript": "^1.0.25",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
     "totp-generator": "^1.0.0",
     "ws": "^8.18.0"
   },
@@ -31,5 +33,6 @@
     "@types/react": "18.3.11",
     "eslint": "^8",
     "eslint-config-next": "14.2.15"
-  }
+  },
+  "type": "module"
 }

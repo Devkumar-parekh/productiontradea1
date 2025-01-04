@@ -2,15 +2,61 @@
 import { CustomDatatable } from "customdatatabledev";
 import React from "react";
 import { decodeWithKey } from "../../lib/utils";
+import axios from "axios";
+import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
 
 function Clients(props) {
+  const router = useRouter();
+
   const TableHead = [
+    {
+      prop: "customCell",
+      title: "First Name",
+      cell: (row) => {
+        return <>{decodeWithKey(row?.fname)}</>;
+      },
+      issortable: false,
+    },
+    {
+      prop: "customCell",
+      title: "Last Name",
+      cell: (row) => {
+        return <>{decodeWithKey(row?.lname)}</>;
+      },
+      issortable: false,
+    },
     {
       prop: "customCell",
       title: "Client Code",
       cell: (row) => {
         return <>{decodeWithKey(row?.client_code)}</>;
       },
+      issortable: false,
+    },
+    {
+      prop: "customCell",
+      title: "Action",
+      cell: (row) => {
+        return (
+          <button
+            className="btn btn-danger btn-sm"
+            onClick={async () => {
+              if (confirm("Are you sure you want to delete this client?")) {
+                const temp = await axios.post("/api/delete", {
+                  _id: row._id,
+                  tbl: "client",
+                });
+                console.log(temp, "😎😍💎");
+                router.refresh();
+              }
+            }}
+          >
+            Delete
+          </button>
+        );
+      },
+      issortable: false,
     },
     // { prop: "name", title: "Name" },
   ];

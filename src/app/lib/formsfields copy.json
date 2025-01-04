@@ -47,64 +47,37 @@
   "buysellfrom": [
     {
       "label": "Radio",
-      "field": "transactiontype",
+      "field": "buysell",
       "type": "radio",
       "required": true,
-      "class": "d-inline col-md-3 my-2 ",
+      "class": "d-inline col-md-4",
       "options": [
-        { "label": "Buy", "value": "BUY" },
-        { "label": "Sell", "value": "SELL" }
+        { "label": "Buy", "value": "buy" },
+        { "label": "Sell", "value": "sell" }
       ]
     },
     {
       "label": "Radio",
-      "field": "variety",
+      "field": "regularboco",
       "type": "radio",
       "required": true,
-      "class": "d-inline col-md-12 my-2 ",
+      "class": "d-inline col-md-4",
       "options": [
-        { "label": "Normal Order (Regular)", "value": "NORMAL" },
-        { "label": "Stop loss order", "value": "STOPLOSS" },
-        { "label": "After Market Order", "value": "AMO" },
-        { "label": "ROBO (Bracket Order)", "value": "ROBO" }
+        { "label": "Regular", "value": "regular" },
+        { "label": "BO", "value": "bo" },
+        { "label": "CO", "value": "co" }
       ]
     },
     {
       "label": "Radio",
-      "field": "ordertype",
+      "field": "intradaydeliverynormal",
       "type": "radio",
       "required": true,
-      "class": "d-inline col-md-9 my-2 ",
+      "class": "d-inline col-md-4",
       "options": [
-        { "label": "MARKET", "value": "MARKET" },
-        { "label": "LIMIT", "value": "LIMIT" },
-        { "label": "STOPLOSS_LIMIT", "value": "STOPLOSS_LIMIT" },
-        { "label": "STOPLOSS_MARKET", "value": "STOPLOSS_MARKET" }
-      ]
-    },
-    {
-      "label": "Radio",
-      "field": "producttype",
-      "type": "radio",
-      "required": true,
-      "class": "d-inline col-md-12 my-2 ",
-      "options": [
-        { "label": "DELIVERY", "value": "DELIVERY" },
-        { "label": "CARRY FORWARD", "value": "CARRYFORWARD" },
-        { "label": "MARGIN", "value": "MARGIN" },
-        { "label": "INTRADAY", "value": "INTRADAY" },
-        { "label": "BO", "value": "BO" }
-      ]
-    },
-    {
-      "label": "Radio",
-      "field": "duration",
-      "type": "radio",
-      "required": true,
-      "class": "d-inline col-md-4 my-2 ",
-      "options": [
-        { "label": "DAY", "value": "DAY" },
-        { "label": "IOC", "value": "IOC" }
+        { "label": "Normal", "value": "normal" },
+        { "label": "Intraday", "value": "intraday" },
+        { "label": "Delivery", "value": "delivery" }
       ]
     },
     {

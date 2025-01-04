@@ -10,7 +10,7 @@ function CustomModal(props) {
 
   return (
     <>
-      <button className="btn btn-primary p-1" onClick={handleShow}>
+      <button className="btn btn-primary p-1 btn-sm" onClick={handleShow}>
         {props.btnText}
       </button>
       <Modal
