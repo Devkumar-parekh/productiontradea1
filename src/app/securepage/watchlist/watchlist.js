@@ -6,7 +6,6 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 // import { SmartAPI } from "smartapi-javascript";
-import { getSocket } from "../../hook/getsocket";
 import { createWebSocket } from "../../../socket";
 import CustomModal from "../../components/CustomModal";
 import BuySellForm from "../../components/BuySellForm";
