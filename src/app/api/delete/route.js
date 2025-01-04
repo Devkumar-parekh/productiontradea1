@@ -1,5 +1,5 @@
 import Client from "../../mongo/model/Clients";
-import Watchlist from "../../mongo/model/Watchlist";
+import WatchList from "../mongo/model/WatchList";
 import connectToDatabase from "../../mongo/db";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
@@ -15,7 +15,7 @@ export const POST = async (req, content) => {
         _id: new ObjectId(payload?._id),
       });
     } else if (payload?.tbl === "watchlist") {
-      data = await Watchlist.deleteOne({
+      data = await WatchList.deleteOne({
         _id: new ObjectId(payload?._id),
       });
     }
