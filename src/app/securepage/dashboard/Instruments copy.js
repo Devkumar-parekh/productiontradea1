@@ -7,20 +7,11 @@ import { addWatchList, getInstrument } from "../../lib/actions";
 import { CustomDatatable } from "customdatatabledev";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { Accordion, Button, Offcanvas } from "react-bootstrap";
 function Instruments() {
   const [nextpageid, setnextpageid] = useState("");
   const [formdata, setFormdata] = useState({
     instrument: "",
   });
-
-  const [loaders, setloaders] = useState({});
-
-  const addLoader = (key, value) => {
-    setloaders((prev) => {
-      return { ...prev, [key]: value };
-    });
-  };
 
   const [data, setData] = useState([]);
 
@@ -68,15 +59,10 @@ function Instruments() {
                 className="btn btn-primary p-1 btn-sm"
                 onClick={async () => {
                   console.log(row, "✨👑");
-                  addLoader("index", row._id);
                   await addWatchList(row);
-
-                  addLoader("index", 0);
                 }}
               >
-                {loaders?.index === row._id
-                  ? "Loading ..."
-                  : "Add To WatchList"}
+                Add To WatchList
               </button>
               {/* <CustomModal
                 btnText="Buy"
@@ -193,35 +179,12 @@ function Instruments() {
             </div> */}
           </form>
         </div>
-
-        <Accordion defaultActiveKey="0">
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Instruments List</Accordion.Header>
-            <Accordion.Body>
-              <div
-                className="table-responsive mx-3"
-                style={{
-                  fontFamily: "math",
-                  // position: "absolute",
-                  // right: "10px",
-                  // background: "white",
-                  // padding: "10px",
-                  // zIndex: 9,
-                  // borderRadius: "10px",
-                }}
-              >
-                {data?.length > 0 ? (
-                  <CustomDatatable {...tableProps} />
-                ) : (
-                  <>No data found</>
-                )}
-                {/* {data?.map((dataitem, index) => {
+        <div className="table-responsive " style={{ fontFamily: "math" }}>
+          <CustomDatatable {...tableProps} />
+          {/* {data?.map((dataitem, index) => {
             return <div key={index}>{dataitem.symbol}</div>;
           })} */}
-              </div>
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
+        </div>
       </>
     </div>
   );

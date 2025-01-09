@@ -8,6 +8,8 @@ import { decodeWithKey, encodeWithKey } from "./utils";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 // import { fetchInstrument } from "./data";
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
 export async function getWatchList(formData) {
   try {
@@ -46,9 +48,10 @@ export async function addWatchList(formData) {
       data: data,
     };
     console.log(data, "😋👑👑🌈");
-    alert("Watchlist added successfully");
     // revalidatePath("/securepage/watchlist");
     // redirect("/securepage/clients");
+
+    revalidatePath("/securepage/dashboard");
     return JSON.parse(JSON.stringify(result || {}));
   } catch (error) {
     console.error("Database Error:", error);
@@ -106,11 +109,11 @@ export async function addClient(formData) {
   }
 }
 
-export async function getInstrument(formData) {
+export async function getInstrument(formData, nextpageid = "") {
   try {
     await connectToDatabase();
     const tempsearchstring = formData.get("searchstring")?.split(" ");
-    const data = await Instrument.find({
+    let query = {
       symbol: { $regex: new RegExp(tempsearchstring?.[0] || "", "i") },
       strike: {
         $regex:
@@ -118,7 +121,23 @@ export async function getInstrument(formData) {
             ? new RegExp(`^${tempsearchstring?.[1]}` || "", "i")
             : "",
       },
-    });
+    };
+    if (nextpageid) {
+      const startingId = new ObjectId(nextpageid); // Replace with your _id
+
+      // Query documents with _id greater than the startingId
+      query["_id"] = { $gt: startingId };
+    }
+    const data = await Instrument.find(query).limit(30);
+    // const data = await Instrument.find({
+    //   symbol: { $regex: new RegExp(tempsearchstring?.[0] || "", "i") },
+    //   strike: {
+    //     $regex:
+    //       tempsearchstring?.length > 1
+    //         ? new RegExp(`^${tempsearchstring?.[1]}` || "", "i")
+    //         : "",
+    //   },
+    // }).limit(30);
     return JSON.parse(JSON.stringify(data || []));
   } catch (error) {
     console.error("Database Error:", error);

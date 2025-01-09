@@ -28,6 +28,38 @@ export const POST = async (req, res) => {
       case 2: // getHolding
         res = await smart_api.getHolding();
         break;
+      case 3: // getOrderBook
+        res = await smart_api.getOrderBook();
+        break;
+      case 4: // search
+        // res = await smart_api.search({ search_text: payload?.search_text });
+
+        const url =
+          "https://apiconnect.angelbroking.com/rest/secure/angelbroking/search/v1/";
+
+        const headers = {
+          Authorization: `Bearer ${payload.jwt}`,
+          "Content-Type": "application/json",
+          "X-ClientCode": decodeWithKey(payload.api_key),
+        };
+
+        const body = {
+          search_text: payload?.search_text,
+        };
+
+        try {
+          const response = await axios.post(url, body, { headers });
+          console.log("Search Result:", response.data);
+          return NextResponse.json({
+            data: response.data,
+          });
+        } catch (error) {
+          console.error(
+            "Error searching for stock:",
+            error.response?.data || error.message
+          );
+        }
+        break;
       default: // get profile
         res = await smart_api.getProfile();
         break;

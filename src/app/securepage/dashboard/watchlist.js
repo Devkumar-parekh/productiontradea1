@@ -349,11 +349,6 @@ function Watchlist(props) {
     tableClasses: "table-dark table-hover table-striped", //you can do the changes as needed these are bootstrap classes
     theadClasses: "table-primary", //you can do the changes as needed these are bootstrap classes
     tbodyClasses: "table-success", //you can do the changes as needed these are bootstrap classes
-    onscroll: async (e) => {
-      if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight) {
-        console.log("Hello");
-      }
-    },
   };
 
   let exchange_mapping = {
@@ -533,7 +528,7 @@ function Watchlist(props) {
   }, [authstate?.loginData]); // Empty dependency array ensures this runs only once
 
   return (
-    <div style={{ fontFamily: "math" }}>
+    <div>
       <CustomDatatable {...tableProps} />
     </div>
   );
