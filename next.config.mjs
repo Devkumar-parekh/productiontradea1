@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  // env: {
+  //   customKey: "my-value",
+  // },
   env: {
-    customKey: "my-value",
+    ENCODER_KEY: process.env.ENCODER_KEY,
+    CONNECT_STR: process.env.CONNECT_STR,
   },
 };
 
