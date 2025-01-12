@@ -272,67 +272,8 @@ function Watchlist(props) {
       },
       issortable: false,
     },
-    // {
-    //   prop: "customCell",
-    //   title: "Order details",
-    //   cell: (row) => {
-    //     return (
-    //       <>
-    //         <button
-    //           className="btn btn-primary btn-sm me-2 "
-    //           onClick={async () => {
-    //             console.log("🤵row,", row);
-    //             Object.entries(authstate?.loginData)?.map(
-    //               async ([key, value], itemindex) => {
-    //                 if (value?.jwtToken) {
-    //                   const temp = await axios.post("/api/getorderbook", {
-    //                     api_key: decodeWithKey(value?.api_key),
-    //                     jwt: value?.jwtToken,
-    //                   });
-    //                 }
-    //               }
-    //             );
-    //           }}
-    //         >
-    //           Get order details
-    //         </button>
-    //       </>
-    //     );
-    //   },
-    //   issortable: false,
-    // },
-    // {
-    //   prop: "customCell",
-    //   title: "Action3",
-    //   cell: (row) => {
-    //     return (
-    //       <>
-    //         <button
-    //           className="btn btn-primary btn-sm me-2 "
-    //           onClick={async () => {
-    //             console.log("🤵row,", row);
-    //             Object.entries(authstate?.loginData)?.map(
-    //               async ([key, value], itemindex) => {
-    //                 if (value?.jwtToken) {
-    //                   const temp = await axios.post("/api/operation", {
-    //                     api_key: value?.api_key,
-    //                     jwt: value?.jwtToken,
-    //                     // opt: 2,
-    //                   });
-    //                   console.log(itemindex, "order book", temp, "Test😎💛");
-    //                 }
-    //               }
-    //             );
-    //           }}
-    //         >
-    //           Profile
-    //         </button>
-    //       </>
-    //     );
-    //   },
-    //   issortable: false,
-    // },
   ];
+
   const tableProps = {
     Pagination: "false",
     SearchFilter: "false",
@@ -371,7 +312,7 @@ function Watchlist(props) {
     let socket;
     let exchangewisedata = [];
     let exchobj = {};
-    watchlistdata?.map((item) => {
+    props.data?.map((item) => {
       if (exchobj[item?.exch_seg]) {
         exchobj[item?.exch_seg] = [
           ...exchobj[item?.exch_seg],
@@ -388,7 +329,13 @@ function Watchlist(props) {
         tokens: value,
       };
     });
-    console.log(exchangewisedata);
+    console.log(
+      exchobj,
+      props.data,
+      exchangewisedata,
+      "🛴🛴🛴exchobj, props.data, exchangewisedata"
+    );
+
     if (authdata?.length) {
       // if (false && authdata?.length) {
       for (let authindex in authdata) {
@@ -405,7 +352,7 @@ function Watchlist(props) {
 
           // Handle connection open
           socket.onopen = () => {
-            console.log("WebSocket connected", watchlistdata);
+            console.log("WebSocket connected", exchangewisedata);
 
             const subscriptionMessage = {
               action: 1,
