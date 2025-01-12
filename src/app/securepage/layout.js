@@ -80,7 +80,7 @@ function Layout({ children }) {
                       Clients
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <Link
                       className={`nav-link ${
                         pathname === "/securepage/watchlist" ? "active" : ""
@@ -89,7 +89,28 @@ function Layout({ children }) {
                     >
                       Watchlist
                     </Link>
+                  </li> */}
+                  <li className="nav-item">
+                    <Link
+                      className={`nav-link ${
+                        pathname === "/securepage/orderstatus" ? "active" : ""
+                      }`}
+                      href="/securepage/orderstatus"
+                    >
+                      Order Status
+                    </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link
+                      className={`nav-link ${
+                        pathname === "/securepage/holdings" ? "active" : ""
+                      }`}
+                      href="/securepage/holdings"
+                    >
+                      Holdings
+                    </Link>
+                  </li>
+
                   {/* <li className="nav-item">
                       <a className="nav-link" href="#">
                         Link

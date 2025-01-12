@@ -1,18 +1,29 @@
-import { getWatchList } from "../../lib/actions";
+"use client";
+import { useEffect, useState } from "react";
 import Watchlist from "../watchlist/watchlist";
 import Instruments from "./Instruments";
+import axios from "axios";
 
-export default async function Page() {
-  const watchListData = await getWatchList();
+export default function Page(props) {
+  const [watchListData, setwatchListData] = useState([]);
+  const [refreshwatchlist, setrefreshwatchlist] = useState(1);
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.post("/api/watchlist");
+      console.log(data.data);
+      setwatchListData(data.data);
+    })();
+  }, [refreshwatchlist]);
   return (
     <main>
-      {/* <h1 className={`mb-4 text-xl md:text-2xl`}>Dashboard</h1> */}
       <>
-        {/* api_key: "", client_code: "", password: "", totp: "", type: "", */}
-        {/* <Instruments /> */}
+        <Instruments setrefreshwatchlist={setrefreshwatchlist} />
 
         <h2>Watch-List</h2>
-        <Watchlist data={watchListData} />
+        <Watchlist
+          data={watchListData}
+          setrefreshwatchlist={setrefreshwatchlist}
+        />
       </>
     </main>
   );

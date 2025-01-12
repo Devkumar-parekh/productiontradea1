@@ -13,9 +13,13 @@ import BuySellForm from "../../components/BuySellForm";
 function Watchlist(props) {
   const authstate = useSelector((state) => state.auth);
   const [watchlistdata, setWatchlistdata] = useState(props.data);
+
+  useEffect(() => {
+    setWatchlistdata(props.data);
+  }, [props.data]);
+  console.log(props.data, watchlistdata, "🚒🚒🚒");
   const [orderstatus, setOrderstatus] = useState([]);
   const [modal, setmodal] = useState(1);
-  console.log(props.data, "😉🤐🤐");
   const router = useRouter();
   const TableHead = [
     {
@@ -255,7 +259,10 @@ function Watchlist(props) {
                   tbl: "watchlist",
                 });
                 console.log(temp, "😎😍💎");
-                router.refresh();
+                // router.refresh();
+
+                const d = new Date();
+                props.setrefreshwatchlist(d);
               }}
             >
               Delete
@@ -282,14 +289,6 @@ function Watchlist(props) {
     //                     api_key: decodeWithKey(value?.api_key),
     //                     jwt: value?.jwtToken,
     //                   });
-    //                   console.log(
-    //                     itemindex,
-    //                     "order book",
-    //                     decodeWithKey(value?.client_code),
-    //                     temp?.data?.data?.text,
-    //                     temp?.data?.data?.orderid,
-    //                     "Test😎💛"
-    //                   );
     //                 }
     //               }
     //             );
@@ -379,14 +378,9 @@ function Watchlist(props) {
           decodeWithKey(item.token),
         ];
       } else {
-        console.log(
-          decodeWithKey(item?.exch_seg),
-          decodeWithKey(item?.instrumenttype)
-        );
         exchobj[item?.exch_seg] = [decodeWithKey(item.token)];
       }
     });
-    console.log(exchobj);
 
     exchangewisedata = Object.entries(exchobj).map(([key, value]) => {
       return {
@@ -530,7 +524,7 @@ function Watchlist(props) {
         socket = null;
       }
     };
-  }, [authstate?.loginData]); // Empty dependency array ensures this runs only once
+  }, [authstate?.loginData, props.data]); // Empty dependency array ensures this runs only once
 
   return (
     <div style={{ fontFamily: "math" }}>
@@ -540,6 +534,7 @@ function Watchlist(props) {
 }
 
 export default Watchlist;
+
 function handleBinaryMessage(binaryData) {
   // Convert binary (ArrayBuffer) to string
   const text = new TextDecoder().decode(binaryData);

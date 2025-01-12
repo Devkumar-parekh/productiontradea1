@@ -8,7 +8,10 @@ import { CustomDatatable } from "customdatatabledev";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Accordion, Button, Offcanvas } from "react-bootstrap";
-function Instruments() {
+import { useRouter } from "next/navigation";
+function Instruments(props) {
+  const router = useRouter();
+
   const [nextpageid, setnextpageid] = useState("");
   const [formdata, setFormdata] = useState({
     instrument: "",
@@ -72,6 +75,10 @@ function Instruments() {
                   await addWatchList(row);
 
                   addLoader("index", 0);
+                  const d = new Date();
+                  props.setrefreshwatchlist(d);
+                  // props.setRefreshchildren(1000);
+                  // router.refresh();
                 }}
               >
                 {loaders?.index === row._id

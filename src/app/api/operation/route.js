@@ -15,7 +15,7 @@ export const POST = async (req, res) => {
       api_key: decodeWithKey(payload.api_key), // PROVIDE YOUR API KEY HERE
       access_token: payload.jwt,
     });
-
+    console.log(payload?.opt);
     switch (payload?.opt) {
       case 1: // placeorder
         let orderres = await smart_api.placeOrder(payload.data);
@@ -27,9 +27,12 @@ export const POST = async (req, res) => {
         break;
       case 2: // getHolding
         res = await smart_api.getHolding();
+        res = res.data;
         break;
       case 3: // getOrderBook
         res = await smart_api.getOrderBook();
+        console.log(res);
+        res = res.data;
         break;
       case 4: // search
         // res = await smart_api.search({ search_text: payload?.search_text });

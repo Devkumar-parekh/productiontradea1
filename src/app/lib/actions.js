@@ -5,7 +5,7 @@ import Instrument from "../mongo/model/Instrument";
 import WatchList from "../mongo/model/WatchList";
 import Client from "../mongo/model/Clients";
 import { decodeWithKey, encodeWithKey } from "./utils";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 // import { fetchInstrument } from "./data";
 const mongoose = require("mongoose");
@@ -47,11 +47,8 @@ export async function addWatchList(formData) {
       message: "Resource created successfully.",
       data: data,
     };
-    console.log(data, "😋👑👑🌈");
     // revalidatePath("/securepage/watchlist");
-    // redirect("/securepage/clients");
-
-    revalidatePath("/securepage/dashboard");
+    // revalidatePath("/securepage/dashboard");
     return JSON.parse(JSON.stringify(result || {}));
   } catch (error) {
     console.error("Database Error:", error);
@@ -93,7 +90,6 @@ export async function addClient(formData) {
       message: "Resource created successfully.",
       data: data,
     };
-    console.log(data, "😋👑👑🌈");
 
     revalidatePath("/securepage/clients");
     // redirect("/securepage/clients");
