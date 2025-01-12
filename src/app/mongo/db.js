@@ -9,6 +9,7 @@ async function connectToDatabase() {
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
   }
+  return connectionStr;
 }
 
 export default connectToDatabase;

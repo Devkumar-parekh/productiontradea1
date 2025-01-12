@@ -10,7 +10,8 @@ import axios from "axios";
 export const dynamic = "force-dynamic"; // defaults to auto;
 
 export const POST = async (req, content) => {
-  await connectToDatabase();
+  const connstr = await connectToDatabase();
+  console.log(connstr);
   try {
     const payload = await req.json();
 
@@ -81,7 +82,7 @@ export const POST = async (req, content) => {
     console.log(error);
     return NextResponse.json({
       status: 500,
-      message: `Failed ${error}`,
+      message: `Failed ${error} ${connstr}`,
       data: [],
       error,
     });
