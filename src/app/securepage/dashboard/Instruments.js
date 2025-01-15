@@ -70,7 +70,6 @@ function Instruments(props) {
               <button
                 className="btn btn-primary p-1 btn-sm"
                 onClick={async () => {
-                  console.log(row, "✨👑");
                   addLoader("index", row._id);
                   await addWatchList(row);
 
@@ -144,7 +143,6 @@ function Instruments(props) {
     tbodyClasses: "table-success", //you can do the changes as needed these are bootstrap classes
     onscroll: async (e) => {
       if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight) {
-        console.log("Hello");
         document.InstrumentsForm.requestSubmit();
         // await getInstrument(data);
       }

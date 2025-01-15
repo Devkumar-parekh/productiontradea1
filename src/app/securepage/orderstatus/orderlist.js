@@ -12,7 +12,6 @@ import BuySellForm from "../../components/BuySellForm";
 import { Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 function OrderList(props) {
-  console.log(props.data, "🚒🚒🚒");
   const TableHead = [
     {
       prop: "customCell",
@@ -107,7 +106,7 @@ function OrderList(props) {
     tbodyClasses: "table-success", //you can do the changes as needed these are bootstrap classes
     onscroll: async (e) => {
       if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight) {
-        console.log("Hello");
+        // console.log("Hello");
       }
     },
   };

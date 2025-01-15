@@ -17,7 +17,7 @@ function Watchlist(props) {
   useEffect(() => {
     setWatchlistdata(props.data);
   }, [props.data]);
-  console.log(props.data, watchlistdata, "🚒🚒🚒");
+
   const [orderstatus, setOrderstatus] = useState([]);
   const [modal, setmodal] = useState(1);
   const router = useRouter();
@@ -258,7 +258,6 @@ function Watchlist(props) {
                   _id: row._id,
                   tbl: "watchlist",
                 });
-                console.log(temp, "😎😍💎");
                 // router.refresh();
 
                 const d = new Date();
@@ -291,7 +290,7 @@ function Watchlist(props) {
     tbodyClasses: "table-success", //you can do the changes as needed these are bootstrap classes
     onscroll: async (e) => {
       if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight) {
-        console.log("Hello");
+        // console.log("Hello");
       }
     },
   };
@@ -329,12 +328,6 @@ function Watchlist(props) {
         tokens: value,
       };
     });
-    console.log(
-      exchobj,
-      props.data,
-      exchangewisedata,
-      "🛴🛴🛴exchobj, props.data, exchangewisedata"
-    );
 
     if (authdata?.length) {
       // if (false && authdata?.length) {

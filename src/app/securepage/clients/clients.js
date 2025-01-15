@@ -47,7 +47,6 @@ function Clients(props) {
                   _id: row._id,
                   tbl: "client",
                 });
-                console.log(temp, "😎😍💎");
                 router.refresh();
               }
             }}

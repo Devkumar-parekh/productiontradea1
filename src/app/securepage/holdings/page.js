@@ -19,9 +19,7 @@ function Page() {
               jwt: value?.jwtToken,
               opt: 2,
             });
-            console.log(data, value, "🚓🚓🚓");
             setHoldingsState((prev) => {
-              console.log("������", data?.data);
               if (data?.data?.length) {
                 return [
                   ...prev,

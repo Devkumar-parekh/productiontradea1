@@ -12,7 +12,6 @@ export function createWebSocket(clientCode, feedToken, apiKey) {
   console.log("test1");
 
   const ws = new WebSocket(url);
-  console.log("hello123");
   ws.onopen = () => {
     console.log("WebSocket connection established.");
   };

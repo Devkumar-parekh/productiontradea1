@@ -8,9 +8,11 @@ import { decodeWithKey } from "../../lib/utils";
 function Page() {
   const authstate = useSelector((state) => state.auth);
   const [orderstate, setOrderState] = useState([]);
+  const [loader, setLoader] = useState(0);
 
   useEffect(() => {
     (async () => {
+      setLoader(1);
       Object.entries(authstate?.loginData)?.map(
         async ([key, value], itemindex) => {
           if (value?.jwtToken) {
@@ -28,6 +30,8 @@ function Page() {
                     return { ...oitem, fname: value.fname, lname: value.lname };
                   }),
                 ];
+              } else {
+                return prev;
               }
             });
             // if (data.data?.length)
@@ -36,13 +40,24 @@ function Page() {
           }
         }
       );
+      setLoader(0);
     })();
   }, [authstate]);
   console.log(orderstate, "orderstate");
   return (
     <div style={{ fontFamily: "math" }}>
       <h2>Orders</h2>
-      <OrderList data={orderstate} />
+      {loader ? (
+        <>Loading...</>
+      ) : orderstate?.length > 0 ? (
+        <OrderList data={orderstate} />
+      ) : (
+        <div
+          style={{ display: "grid", placeItems: "center", minHeight: "60vh" }}
+        >
+          No data found
+        </div>
+      )}
     </div>
   );
 }
